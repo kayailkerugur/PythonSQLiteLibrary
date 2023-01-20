@@ -10,7 +10,7 @@ class Main:
         return vt
     
     def cursor(self) -> sqlite3.Cursor:
-        vt = Main.connect(self=self)
+        vt = self.connect()
         cursor = vt.cursor()
         return cursor
     
@@ -25,9 +25,10 @@ class Main:
         
         strings = list(filter(lambda x: isinstance(x, str), content_name))
         full_sentence = ",".join(strings)
-        cursor = Main.cursor(self=self)
+        cursor = self.cursor()
         cursor.execute("CREATE TABLE " + table_name + " (" + full_sentence + ") ")
 
-main = Main(database="database.sqlite")
+
+main = Main(database="databasee.sqlite")
 
 main.create_table(table_name="titles")
