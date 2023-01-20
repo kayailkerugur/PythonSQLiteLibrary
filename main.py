@@ -1,19 +1,21 @@
 import sqlite3
 
 class Main:
-    
-    def connect(veri_tabani) -> sqlite3.Connection:
-        vt = sqlite3.connect(veri_tabani)
+    database = ""
+    def __init__(self,database):
+        self.database = database
+
+    def connect(self) -> sqlite3.Connection:
+        vt = sqlite3.connect(self.database)
         return vt
     
-    def cursor() -> sqlite3.Cursor:
-        vt = Main.connect()
+    def cursor(self) -> sqlite3.Cursor:
+        vt = Main.connect(self=self)
         cursor = vt.cursor()
         return cursor
     
-    def create_table(table_name):
+    def create_table(self,table_name):
         content_name = []
-        full_sentence = ""
         while True:
             kullanici = input("Enter the content titles. (q to exit)")
             if kullanici == "q":
@@ -21,17 +23,11 @@ class Main:
             else:
                 content_name.append(str(kullanici))
         
-        cursor = Main.cursor()
+        strings = list(filter(lambda x: isinstance(x, str), content_name))
+        full_sentence = ",".join(strings)
+        cursor = Main.cursor(self=self)
         cursor.execute("CREATE TABLE " + table_name + " (" + full_sentence + ") ")
 
+main = Main(database="database.sqlite")
 
-
-Main.create_table(table_name="ilker")
-    
-
-
-
-vt = sqlite3.connect("veri_tabani")
-
-cursor = vt.cursor()
-print(type(cursor))
+main.create_table(table_name="titles")
