@@ -38,6 +38,11 @@ class Main:
         cursor.execute("INSERT INTO " + "bunungibi" + content_name + " VALUES " + content)
         vt.commit()
 
+    def select_table(self) -> str:
+        cursor = self.cursor()
+        result = cursor.execute("")
+        return result
+
 
 main = Main(database="database.sqlite",table_name="bunungibi ")
 main.add_table(content_name="(deneme, amacli, kisiler)",content="('deneme', 'amacli', 'kisiler')")
