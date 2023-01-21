@@ -41,4 +41,3 @@ class Main:
 
 main = Main(database="database.sqlite",table_name="bunungibi ")
 main.add_table(content_name="(deneme, amacli, kisiler)",content="('deneme', 'amacli', 'kisiler')")
-
