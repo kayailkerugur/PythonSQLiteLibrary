@@ -16,7 +16,7 @@ class Main:
         cursor = vt.cursor()
         return cursor
     
-    def create_table(self,table_name):
+    def create_table(selfd,table_name):
         content_name = []
         self.table_name = table_name
         while True:
@@ -28,7 +28,6 @@ class Main:
         
         strings = list(filter(lambda x: isinstance(x, str), content_name))
         full_sentence = ",".join(strings)
-        self.content_name = full_sentence
         cursor = self.cursor()
         cursor.execute("CREATE TABLE " + table_name + " (" + full_sentence + ") ")
 
